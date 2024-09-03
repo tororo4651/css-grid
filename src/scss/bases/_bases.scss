@@ -1,0 +1,18 @@
+// ベース
+
+
+/* フォント */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap");
+
+
+body {
+  font-family: Inter, "Noto Sans JP", sans-serif;
+}
+
+hr {
+  margin: 0;
+  padding-block: 40px;
+  border-width: 0;
+}

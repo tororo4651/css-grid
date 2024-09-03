@@ -1,0 +1,99 @@
+// Utilityクラス・ユーティリティクラス・汎用クラス・ヘルパークラス
+
+
+@use "../global" as g;
+
+
+
+.heading {
+  font-size: min(32px, 6vw);
+  font-weight: bold;
+  line-height: 1.4;
+}
+
+.text {
+  max-width: 26em;
+  font-size: min(16px, 3.5vw);
+  line-height: 1.8;
+}
+
+.button {
+  max-width: 300px;
+  padding: 16px 40px;
+  background-color: g.$accentColor;
+  color: black;
+  border-radius: 4px;
+  font-size: min(16px, 3.5vw);
+}
+
+.img-fill {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+
+
+// 背景色
+.background-ivory {
+  background-color: #f4f0e9;
+}
+
+.background-whitesmoke {
+  background-color: #f5f5f5;
+}
+
+.background-bluesmoke {
+  background-color: var(--blue-smoke);
+}
+
+.background-bluegray {
+  background-color: var(--light-blue-gray);
+}
+
+.background-white {
+  background-color: #fff;
+}
+
+.background-lightgreen {
+  background-color: lightgreen;
+}
+
+.background-green {
+  background-color: #eeffde;
+}
+
+.background-red {
+  background-color: #fff0e5;
+}
+
+.background-yellow {
+  background-color: #feffcd;
+}
+
+
+
+
+
+
+// パディング
+.padding-small {
+  padding: 16px;
+}
+
+
+
+// スクリーンリーダーのみ
+// u-visually-hidden
+.u-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  border: 0;
+  margin: -1px;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  overflow: hidden;
+}

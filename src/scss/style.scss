@@ -7,6 +7,12 @@
 
 
 
+/* リセットCSS */
+@use "bases/_reset.scss";
+
+
+
+
 /* ベース */
 @use "./bases/bases.scss";
 
@@ -30,3 +36,605 @@
 
 
 /* コンポーネント・その他 */
+
+
+
+
+/* Utilityクラス・ユーティリティクラス・汎用クラス・ヘルパークラス */
+@use "./utilities/utilities";
+
+
+
+
+// 変数、ミックスイン、関数
+@use "./global" as g;
+
+
+
+
+// セクション
+[class^="section-"] {
+  padding-block: 96px;
+}
+
+
+.section-01 {
+  text-align: center;
+  display: grid;
+  grid-template-rows:
+  repeat(4, auto)
+  480px;
+  row-gap: 24px;
+  grid-template-areas:
+  "heading"
+  "text"
+  "button"
+  "."
+  "photo";
+  justify-items: center;
+
+  .heading {
+    grid-area: heading;
+  }
+
+  .text {
+    grid-area: text;
+  }
+
+  .button {
+    grid-area: button;
+  }
+
+  .photo {
+    grid-area: photo;
+  }
+}
+
+
+.section-02 {
+  display: grid;
+  grid-template-columns:
+    3fr 4fr;
+  grid-template-rows:
+    1fr
+    repeat(3, auto)
+    1fr;
+  gap: 24px 48px;
+  grid-template-areas:
+    ". photo"
+    "heading photo"
+    "text photo"
+    "button photo"
+    ". photo";
+
+  > .heading {
+    grid-area: heading;
+  }
+
+  > .text {
+    grid-area: text;
+  }
+
+  > .button {
+    grid-area: button;
+  }
+
+  > .photo {
+    grid-area: photo;
+    // height: 0;
+    // min-height: 100%;
+  }
+
+  @media (width <= 768px) {
+    grid-template-columns:
+      auto;
+    grid-template-rows:
+      240px
+      repeat(3, auto);
+    grid-template-areas:
+      "photo"
+      "heading"
+      "text"
+      "button";
+  }
+}
+
+
+.section-03 {
+  color: g.$whiteColor;
+  text-align: center;
+  display: grid;
+  grid-template-columns:
+    40px 1fr 40px;
+  grid-template-rows:
+    96px
+    repeat(3, auto)
+    96px;
+  row-gap: 24px;
+  grid-template-areas:
+    ". . ."
+    ". heading ."
+    ". text ."
+    ". button ."
+    ". . .";
+  justify-items: center;
+
+  > .heading {
+    grid-area: heading;
+  }
+
+  > .text {
+    grid-area: text;
+  }
+
+  > .button {
+    grid-area: button;
+  }
+
+  > .photo {
+    grid-column: 1 / -1;
+    grid-row: 1 / -1;
+    z-index: -1;
+    filter: brightness(.5);
+    height: 0;
+    min-height: 100%;
+  }
+}
+
+
+.section-03-align {
+  color: g.$whiteColor;
+  display: grid;
+  grid-template-columns:
+    40px 1fr 40px;
+  grid-template-rows:
+    140px
+    repeat(3, auto)
+    40px;
+  row-gap: 24px;
+  grid-template-areas:
+    ". . ."
+    ". heading ."
+    ". text ."
+    ". button ."
+    ". . .";
+  justify-items: start;
+
+  > .heading {
+    grid-area: heading;
+  }
+
+  > .text {
+    grid-area: text;
+  }
+
+  > .button {
+    grid-area: button;
+  }
+
+  > .photo {
+    grid-column: 1 / -1;
+    grid-row: 1 / -1;
+    z-index: -1;
+    filter: brightness(.5);
+    height: 0;
+    min-height: 100%;
+  }
+}
+
+
+.section-03-height {
+  box-sizing: content-box;
+  height: 600px;
+  color: g.$whiteColor;
+  text-align: center;
+  display: grid;
+  grid-template-columns:
+    40px 1fr 40px;
+  grid-template-rows:
+    1fr
+    repeat(3, auto)
+    1fr;
+  row-gap: 24px;
+  grid-template-areas:
+    ". . ."
+    ". heading ."
+    ". text ."
+    ". button ."
+    ". . .";
+  justify-items: center;
+
+  > .heading {
+    grid-area: heading;
+  }
+
+  > .text {
+    grid-area: text;
+  }
+
+  > .button {
+    grid-area: button;
+  }
+
+  > .photo {
+    grid-column: 1 / -1;
+    grid-row: 1 / -1;
+    z-index: -1;
+    filter: brightness(.5);
+    height: 0;
+    min-height: 100%;
+  }
+}
+
+
+
+
+// カード
+[class^="card-"] {
+  /* カードの形状 */
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px -1px rgb(0 0 0 / 20%);
+  overflow: hidden;
+
+  /* カード内のタイトル、サブタイトル、アバターのスタイル */
+  .title {
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  .subtitle {
+    font-size: 10px;
+  }
+
+  .avatar img {
+    width: 32px;
+    height: 32px;
+    border: solid 1px #cbd5e1;
+    background-color: #f1f5f9;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+}
+
+
+.card-01 {
+  height: 100%;
+  display: grid;
+  grid-template:
+    "photo photo photo photo photo" 1fr
+    ". . . . ." 8px
+    ". avatar . title ." auto
+    ". avatar . subtitle ." auto
+    ". . . . ." 8px
+    / 8px auto 8px 1fr 8px;
+
+  > .photo {
+    grid-area: photo;
+    height: 0;
+    min-height: 100%;
+  }
+
+  > .title {
+    grid-area: title;
+  }
+
+  > .subtitle {
+    grid-area: subtitle;
+  }
+
+  > .avatar {
+    grid-area: avatar;
+    align-self: center;
+  }
+}
+
+
+.card-01a {
+  height: 200px;
+  display: grid;
+  grid-template:
+    ". . . . ." 8px
+    ". avatar . title ." auto
+    ". avatar . subtitle ." auto
+    ". . . . ." 8px
+    "photo photo photo photo photo" 1fr
+    / 8px auto 8px 1fr 8px;
+
+  > .photo {
+    grid-area: photo;
+    height: 0;
+    min-height: 100%;
+  }
+
+  > .title {
+    grid-area: title;
+  }
+
+  > .subtitle {
+    grid-area: subtitle;
+  }
+
+  > .avatar {
+    grid-area: avatar;
+    align-self: center;
+  }
+}
+
+
+.card-02 {
+  height: 120px;
+  display: grid;
+  grid:
+    "photo . . ." 20px
+    "photo . title ." auto
+    "photo . subtitle ." auto
+    "photo . avatar ." 1fr
+    "photo . . ." 20px
+    / 40% 12px 1fr 12px;
+
+  > .photo {
+    grid-area: photo;
+    // height: 0;
+    // min-height: 100%;
+  }
+
+  > .title {
+    grid-area: title;
+  }
+
+  > .subtitle {
+    grid-area: subtitle;
+  }
+
+  > .avatar {
+    grid-area: avatar;
+    justify-self: end;
+    place-self: end;
+  }
+}
+
+
+.card-03 {
+  height: 200px;
+  display: grid;
+  grid-template:
+    "photo photo photo photo photo" 1fr
+    ". . . . ." 8px
+    ". avatar . title ." auto
+    ". avatar . subtitle ." auto
+    ". . . . ." 8px
+    / 8px auto 8px 1fr 8px;
+
+  > .photo {
+    grid-area: 1 / 1 / -1 / -1;
+    height: 0;
+    min-height: 100%;
+  }
+
+  > .title {
+    grid-area: title;
+    color: #fff;
+  }
+
+  > .subtitle {
+    grid-area: subtitle;
+    color: #fff;
+  }
+
+  > .avatar {
+    grid-area: avatar;
+    align-self: center;
+  }
+
+  &::after {
+    content: "";
+    grid-area: 2 / 1 / -1 / -1;
+    background-color: rgb(0 0 0 / 50%);
+  }
+
+  > :not(.photo) {
+    z-index: 1;
+  }
+}
+
+
+.card-01-position {
+  position: relative;
+  height: 200px;
+  padding: 8px;
+  display: grid;
+  grid:
+    "photo photo photo" 1fr
+    ". . ." 8px
+    "avatar . title" auto
+    "avatar . subtitle" auto
+    / auto 8px 1fr;
+
+  > .photo {
+    position: absolute;
+    height: 0;
+    min-height: 100%;
+    // grid-area: photo;
+    grid-column: auto;
+    grid-row: auto / 2;
+  }
+
+  > .title {
+    grid-area: title;
+  }
+
+  > .subtitle {
+    grid-area: subtitle;
+  }
+
+  > .avatar {
+    grid-area: avatar;
+    align-self: center;
+  }
+}
+
+
+
+
+// データカード
+[class^="datacard-"] {
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px -1px rgb(0 0 0 / 20%);
+
+  .title {
+    color: #727272;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  .subtitle {
+    font-size: 12px;
+  }
+
+  .data {
+    font-size: 28px;
+    font-weight: 500;
+
+    &.text-small {
+      font-size: 16px;
+    }
+  }
+
+  .icon {
+    color: #64748b;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+
+.datacard-01 {
+  padding: 16px;
+  display: grid;
+  grid-template:
+    "title icon" auto
+    ". ." 20px
+    "data chart" auto
+    "subtitle chart" auto
+    / minmax(max-content, 1fr) auto;
+
+  > .title {
+    grid-area: title;
+  }
+
+  > .subtitle {
+    grid-area: subtitle;
+  }
+
+  > .data {
+    grid-area: data;
+  }
+
+  > .chart {
+    grid-area: chart;
+    align-self: center;
+  }
+
+  > .icon {
+    grid-area: icon;
+    justify-self: end;
+  }
+}
+
+
+.datacard-02 {
+  padding: 16px;
+  display: grid;
+  grid:
+    "title icon" auto
+    ". ." 20px
+    "chart chart" auto
+    / 1fr auto;
+
+  > .title {
+    grid-area: title;
+  }
+
+  > .chart {
+    grid-area: chart;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  > .icon {
+    grid-area: icon;
+  }
+}
+
+
+.datacard-03 {
+  padding: 16px;
+  display: grid;
+  grid-template:
+    "title icon" auto
+    ". ." 20px
+    "data data" auto
+    / 1fr auto;
+
+  > .title {
+    grid-area: title;
+  }
+
+  > .data {
+    grid-area: data;
+
+  }
+
+  > .icon {
+    grid-area: icon;
+  }
+}
+
+
+.datacards-bento {
+  display: grid;
+  grid-template-columns:
+    repeat(12, 1fr);
+  gap: 16px;
+  container-type: inline-size;
+
+  > * {
+    grid-column: 1 / -1;
+  }
+
+
+  @container (width >= 480px) {
+
+    > .type-a {
+      grid-column: span 6;
+    }
+  }
+
+
+  @container (width >= 960px) {
+
+    > .type-a {
+      grid-column: span 3;
+    }
+
+    > .type-b {
+      grid-column: span 7;
+      grid-row: span 3;
+    }
+
+    > .type-c {
+      grid-column: span 5;
+    }
+
+    > .type-d {
+      grid-column: span 6;
+    }
+  }
+}
